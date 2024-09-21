@@ -1,5 +1,17 @@
 name: Event-Action-workflow
-on: [push,workflow_dispatch]
+on: 
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main      #only main
+      - 'dev-*'   #dev-ev  dev-brew etc
+      - 'feat/**'   #feat/new   feat/next/power etc
+    paths-ignore: 
+      -'.github/workflows/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
